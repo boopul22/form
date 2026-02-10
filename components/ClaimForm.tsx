@@ -63,7 +63,7 @@ const ClaimForm: React.FC = () => {
 
       const [aiResponse] = await Promise.all([
         assessClaim(formData.claimType, formData.description),
-        fetch('https://formsubmit.co/ajax/ukclaims.org@outlook.com', {
+        fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374', {
           method: 'POST',
           body: formSubmitData,
           headers: {
