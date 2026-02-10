@@ -48,9 +48,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <main className="flex-grow flex flex-col items-center justify-center bg-[#ece8e1] px-4 py-12 md:py-20">
+    <main className="flex-grow flex flex-col items-center justify-center bg-[#ece8e1] px-4 py-8 md:py-20">
       <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight leading-tight mb-3">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight leading-tight mb-3">
           Check Your Car<br />Finance Claim
         </h1>
         <p className="text-lg text-slate-600">

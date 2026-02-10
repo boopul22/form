@@ -15,11 +15,11 @@ const RepoFormPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
-      <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl border border-slate-100 transition-all hover:shadow-2xl">
+      <div className="w-full max-w-md p-6 md:p-8 bg-white rounded-2xl shadow-xl border border-slate-100 transition-all hover:shadow-2xl">
         <h1 className="text-3xl font-bold text-slate-900 mb-6 text-center tracking-tight">
           Create New Repository
         </h1>
-        
+
         {submitted ? (
           <div className="text-center p-6 bg-emerald-50 rounded-xl border border-emerald-100 animate-in fade-in zoom-in duration-300">
             <div className="text-emerald-500 mb-2">
@@ -28,7 +28,7 @@ const RepoFormPage: React.FC = () => {
               </svg>
             </div>
             <p className="text-emerald-800 font-semibold">Repository "{repoName}" initialized!</p>
-            <button 
+            <button
               onClick={() => setSubmitted(false)}
               className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
             >
@@ -51,7 +51,7 @@ const RepoFormPage: React.FC = () => {
                 required
               />
             </div>
-            
+
             <button
               type="submit"
               className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 focus:ring-4 focus:ring-slate-900/10 active:scale-[0.98] transition-all duration-200"
@@ -61,7 +61,7 @@ const RepoFormPage: React.FC = () => {
           </form>
         )}
       </div>
-      
+
       <p className="mt-8 text-slate-500 text-sm">
         UK Claims Repository Management System v1.0
       </p>
