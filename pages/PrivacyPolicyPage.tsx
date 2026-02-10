@@ -5,66 +5,82 @@ const PrivacyPolicyPage: React.FC = () => {
     <div className="bg-white py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
-        <p className="text-sm text-slate-500 mb-8">Last updated: January 2026</p>
+        <p className="text-sm text-slate-500 mb-8">Last Updated: January 26, 2026</p>
 
         <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Introduction</h2>
-            <p>ukclaims.org ("we", "us", "our") is committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, and protect your personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">1. INTRODUCTION AND SCOPE</h2>
+            <p>
+              ukclaims.org (“Company,” “we,” “our,” or “us”) is a marketing and technology platform. This Privacy Policy governs the personal information we collect when you: (a) visit our website (the “Site”); (b) utilize our claim-facilitation tools; or (c) contact us via our dedicated telephone lines or request to be contacted by our third-party marketing partners, including but not limited to, law firms, intake specialists, and legal advocates (collectively, “Marketing Partners”).
+            </p>
+            <p className="font-bold mt-2">IF YOU DO NOT AGREE TO THIS PRIVACY POLICY IN ITS ENTIRETY, YOU MAY NOT ACCESS THE SITE OR UTILIZE OUR SERVICES.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Data Controller</h2>
-            <p>The data controller is Example Legal Ltd, registered in England & Wales. For data protection enquiries, contact us at: support@ukclaims.org.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">2. NOT A LAW FIRM OR INSURANCE PROVIDER</h2>
+            <p><span className="font-bold">Important Disclosure:</span> ukclaims.org is not a law firm, a lawyer referral service, or an insurance company. We do not provide legal advice, mediation, or insurance adjusting services.</p>
+            <p className="mt-2"><span className="font-bold">No Attorney-Client Relationship:</span> Your use of the Site, or any communication with our representatives via telephone, does not create an attorney-client relationship between you and the Company or any Marketing Partner. An attorney-client relationship is only formed if you sign a formal engagement agreement directly with a law firm.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">3. What Data We Collect</h2>
-            <p>We may collect and process the following personal data:</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">3. INFORMATION COLLECTED (WEB & TELEPHONE)</h2>
+            <p>We collect information that identifies you (“Personal Information”) when you complete our inquiry forms or call our dedicated phone lines:</p>
             <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>Name, email address, telephone number</li>
-              <li>Details of your claim or enquiry</li>
-              <li>Information you provide in forms on our website</li>
-              <li>Technical data such as IP address, browser type, and device information</li>
-              <li>Usage data including pages visited and time spent on our site</li>
+              <li><span className="font-bold">Identifiers:</span> Full name, email address, zip code, and telephone number.</li>
+              <li><span className="font-bold">Claim Data:</span> Date of accident, description of property damage, and insurance status.</li>
+              <li><span className="font-bold">Sensitive/Health Data:</span> Details regarding your physical injuries and medical treatments.</li>
+              <li><span className="font-bold">Audio Recordings:</span> We record and/or monitor all inbound and outbound calls. By calling our number or providing your number to us, you expressly consent to the recording and retention of the audio and data provided during such calls for quality assurance, training, and claim verification.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">4. How We Use Your Data</h2>
-            <p>We use your personal data for the following purposes:</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">4. CALIFORNIA & COLORADO NOTICE: “DO NOT SELL OR SHARE MY PERSONAL INFORMATION”</h2>
+            <p>Under the California Consumer Privacy Act (CCPA/CPRA) and the Colorado Privacy Act (CPA), residents have the right to opt-out of the “sale” or “sharing” of their personal information.</p>
             <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>To assess and process your claim</li>
-              <li>To communicate with you about your enquiry</li>
-              <li>To comply with our legal and regulatory obligations</li>
-              <li>To improve our website and services</li>
-              <li>To send marketing communications (only with your explicit consent)</li>
+              <li><span className="font-bold">Notice of Sale/Sharing:</span> ukclaims.org is a marketing platform. We share the personal information you provide (including name, contact details, and accident information) with our Marketing Partners in exchange for an administrative or marketing fee. Under certain state laws, this transfer is classified as a “sale” or “sharing” of information.</li>
+              <li><span className="font-bold">Right to Opt-Out:</span> You have the right to direct us not to sell or share your information. Please Note: If you exercise this right, we will be unable to process your claim inquiry or connect you with a Marketing Partner, as our service relies on this data transfer.</li>
+              <li><span className="font-bold">How to Opt-Out:</span> To exercise this right, please visit our Your Privacy Choices page or email us at <a href="mailto:support@ukclaims.org" className="text-blue-600 hover:underline">support@ukclaims.org</a> with the subject line “Opt-Out Request.”</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Legal Basis for Processing</h2>
-            <p>We process your data on the following legal bases: your consent, performance of a contract, compliance with legal obligations, and our legitimate interests in providing claims management services.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">5. USE AND SHARING OF DATA (MARKETING MODEL)</h2>
+            <p>We share your information with our Third-Party Marketing Partners.</p>
+            <ul className="list-disc pl-6 space-y-1 mt-2">
+              <li><span className="font-bold">Administrative Fees:</span> These partners pay us an administrative, marketing, or technology fee to receive inquiries. We do not receive a percentage of any legal recovery or insurance payout.</li>
+              <li><span className="font-bold">Transfer of Data:</span> We may transfer audio recordings, transcripts, or form data to our Partners to assist them in evaluating your potential claim.</li>
+            </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">6. Data Sharing</h2>
-            <p>We may share your data with: partner solicitors handling your claim, regulatory bodies as required by law, and service providers who assist us in operating our business. We will never sell your personal data to third parties.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">6. TCPA CONSENT & TELEMARKETING DISCLOSURE</h2>
+            <p>By providing your telephone number on our Site and/or initiating a call to our phone lines, you provide “prior express written consent” to be contacted by ukclaims.org and our designated Marketing Partners via live calls, artificial/synthesized voice, pre-recorded messages, and/or SMS text messages delivered via automated technology. You provide this consent even if your number is listed on any State or Federal Do-Not-Call list.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">7. Data Retention</h2>
-            <p>We retain your personal data for as long as necessary to fulfil the purposes for which it was collected, typically 6 years after the conclusion of your claim, in line with legal requirements.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">7. COOKIES AND BEHAVIORAL TRACKING</h2>
+            <p>We use Cookies, pixels, and tracking technology to analyze Site traffic and target advertisements to you across various devices (mobile, desktop, tablet).</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">8. Your Rights</h2>
-            <p>Under UK GDPR, you have the right to: access your data, rectify inaccuracies, request erasure, restrict processing, data portability, and object to processing. To exercise these rights, email support@ukclaims.org.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">8. SECURITY AND RETENTION</h2>
+            <p>We utilize industry-standard TLS encryption for data in transit. No transmission over the internet or via telephone is 100% secure; you provide data at your own risk.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">9. Complaints</h2>
-            <p>If you are unhappy with how we handle your data, you may lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">9. MINORS</h2>
+            <p>Our services are not intended for individuals under the age of eighteen (18).</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">10. CONTACT US</h2>
+            <p>To exercise your privacy rights or opt-out, please contact:</p>
+            <p className="mt-2">
+              <span className="font-bold">Email:</span> <a href="mailto:support@ukclaims.org" className="text-blue-600 hover:underline">support@ukclaims.org</a>
+            </p>
+            <p>
+              <span className="font-bold">Address:</span> United Kingdom
+            </p>
           </section>
         </div>
       </div>

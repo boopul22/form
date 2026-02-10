@@ -24,8 +24,7 @@ const App: React.FC = () => {
       <Navbar />
       <main className="flex-grow flex flex-col">
         <Routes>
-          <Route path="/" element={<RepoFormPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
 
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

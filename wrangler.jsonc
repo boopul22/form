@@ -1,0 +1,11 @@
+{
+  "name": "ukclaims",
+  "compatibility_date": "2026-02-10",
+  "routes": [
+    { "pattern": "ukclaims.org", "custom_domain": true },
+    { "pattern": "www.ukclaims.org", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./dist"
+  }
+}

@@ -48,10 +48,30 @@ const ClaimForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate network delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Submit to FormSubmit.co for email delivery
+      const formSubmitData = new FormData();
+      formSubmitData.append('firstName', formData.firstName);
+      formSubmitData.append('lastName', formData.lastName);
+      formSubmitData.append('email', formData.email);
+      formSubmitData.append('phone', formData.phone);
+      formSubmitData.append('claimType', formData.claimType);
+      formSubmitData.append('description', formData.description);
+      formSubmitData.append('_subject', `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`);
+      formSubmitData.append('_replyto', formData.email);
+      formSubmitData.append('_template', 'table');
+      formSubmitData.append('_captcha', 'false');
 
-      const aiResponse = await assessClaim(formData.claimType, formData.description);
+      const [aiResponse] = await Promise.all([
+        assessClaim(formData.claimType, formData.description),
+        fetch('https://formsubmit.co/ajax/ukclaims.org@outlook.com', {
+          method: 'POST',
+          body: formSubmitData,
+          headers: {
+            'Accept': 'application/json',
+          },
+        }),
+      ]);
+
       setSubmissionResult(aiResponse);
     } catch (err) {
       setError("Something went wrong. Please try again.");

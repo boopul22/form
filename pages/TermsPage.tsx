@@ -4,53 +4,64 @@ const TermsPage: React.FC = () => {
   return (
     <div className="bg-white py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms of Service</h1>
-        <p className="text-sm text-slate-500 mb-8">Last updated: January 2026</p>
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms and Conditions</h1>
 
         <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Introduction</h2>
-            <p>These Terms of Service ("Terms") govern your use of the ukclaims.org website and services provided by Example Legal Ltd. By using our website or submitting a claim, you agree to be bound by these Terms.</p>
+            <p>These Terms and Conditions govern your access to and use of the ukclaims.org website and services.</p>
+            <p className="mt-2">By using our Site and services, you agree to these Terms. If you do not agree, please do not use our services.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Our Services</h2>
-            <p>ukclaims.org provides claims management services, including initial assessment, case referral to partner solicitors, and claim tracking. We are not a law firm. Legal services are provided by our regulated partner solicitors.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Services Offered</h2>
+            <p>ukclaims.org assists individuals in filing and managing car accident claims. We are not an insurance company. Our platform helps facilitate the claims process by collecting relevant information and submitting it to insurers or legal partners.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">3. No Win, No Fee</h2>
-            <p>Our services operate on a No Win, No Fee (Conditional Fee Agreement) basis. You will not be charged any upfront fees. If your claim is successful, a success fee will be deducted from your compensation, the details of which will be clearly explained before you proceed.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">3. Eligibility</h2>
+            <p>You must be at least 18 years old and capable of entering a legally binding agreement to use our services.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">4. Your Obligations</h2>
-            <p>You agree to: provide accurate and truthful information, cooperate with our team and partner solicitors, notify us of any changes to your circumstances, and not submit fraudulent claims.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">4. User Responsibilities</h2>
+            <p>You agree to:</p>
+            <ul className="list-disc pl-6 space-y-1 mt-2">
+              <li>Provide accurate, current, and complete information</li>
+              <li>Not misuse our platform for unlawful purposes</li>
+              <li>Maintain confidentiality of any login credentials (if applicable)</li>
+            </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Limitation of Liability</h2>
-            <p>While we strive to provide accurate assessments, we do not guarantee the outcome of any claim. Our initial assessments are for guidance only and do not constitute legal advice. Our liability is limited to the fees charged for our services.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Intellectual Property</h2>
+            <p>All content on our Site, including text, logos, images, and software, is the property of ukclaims.org or its licensors and is protected by copyright laws.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">6. Intellectual Property</h2>
-            <p>All content on this website, including text, graphics, logos, and software, is the property of Example Legal Ltd and is protected by intellectual property laws.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">6. Disclaimer</h2>
+            <p>We do not guarantee the outcome of any claim. Results may vary based on the information provided, the nature of the incident, and third-party decisions (e.g., insurance companies).</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">7. Cancellation</h2>
-            <p>You may cancel your claim at any time by contacting us. If you cancel after work has commenced, you may be liable for reasonable costs incurred, as outlined in your agreement.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">7. Limitation of Liability</h2>
+            <p>ukclaims.org shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">8. Governing Law</h2>
-            <p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">8. Termination</h2>
+            <p>We reserve the right to suspend or terminate your access to the Site if you violate these Terms.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">9. Contact</h2>
-            <p>For questions about these Terms, contact us at support@ukclaims.org or call 0800 123 4567.</p>
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">9. Governing Law</h2>
+            <p>These Terms shall be governed by the laws of England and Wales, without regard to conflict of law principles.</p>
+          </section>
+
+          <section className="mt-8 pt-8 border-t border-slate-200">
+            <h2 className="text-xl font-semibold text-slate-900 mb-3">Call us for a free consultation</h2>
+            <p className="text-2xl font-bold text-blue-600">0800 123 4567</p>
+            <p className="text-slate-500 mt-2">Need help after a car accident? We're here for you 24/7.</p>
           </section>
         </div>
       </div>
