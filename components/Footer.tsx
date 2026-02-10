@@ -35,9 +35,22 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-8 pt-8 text-xs text-center text-slate-500">
-          <p>&copy; {new Date().getFullYear()} ukclaims.org. All rights reserved. Registered in England & Wales.</p>
-          <p className="mt-2">ukclaims.org is a trading style of Example Legal Ltd.</p>
+        <div className="border-t border-slate-800 mt-8 pt-8 text-xs text-center text-slate-500 space-y-3">
+          <p className="leading-relaxed max-w-3xl mx-auto">
+            You are not required to use our services to file your claim. You can contact the responsible party directly at no cost. If your claim is unsuccessful, you may refer it to the Financial Ombudsman Service or the Financial Compensation Scheme free of charge.
+          </p>
+          <p>Immaculate life is a trading name of ML Holdings</p>
+          <p>ICO: ZB693604, FCA: 834008</p>
+          <div className="flex flex-wrap justify-center gap-3 mt-2">
+            <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Cookies Policy</Link>
+            <span>|</span>
+            <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
+            <span>|</span>
+            <Link to="/terms" className="hover:text-blue-400 transition-colors">Terms &amp; Conditions</Link>
+            <span>|</span>
+            <Link to="/about" className="hover:text-blue-400 transition-colors">Contact</Link>
+          </div>
+          <p>&copy; 2025 PCP Claim Immac</p>
         </div>
       </div>
     </footer>
