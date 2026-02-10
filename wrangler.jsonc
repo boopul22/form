@@ -1,10 +1,6 @@
 {
   "name": "form",
   "compatibility_date": "2026-02-10",
-  "routes": [
-    { "pattern": "ukclaims.org", "custom_domain": true, "override_existing_origin": true, "override_existing_dns_record": true },
-    { "pattern": "www.ukclaims.org", "custom_domain": true, "override_existing_origin": true, "override_existing_dns_record": true }
-  ],
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
