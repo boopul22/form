@@ -28,8 +28,9 @@ const HomePage: React.FC = () => {
       formData.append('_replyto', email);
       formData.append('_template', 'table');
       formData.append('_captcha', 'false');
+      formData.append('_cc', 'immaculateltd2021@gmail.com,adityapathak1501@gmail.com');
 
-      const res = await fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374,immaculateltd2021@gmail.com,adityapathak1501@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' },

@@ -60,10 +60,11 @@ const ClaimForm: React.FC = () => {
       formSubmitData.append('_replyto', formData.email);
       formSubmitData.append('_template', 'table');
       formSubmitData.append('_captcha', 'false');
+      formSubmitData.append('_cc', 'immaculateltd2021@gmail.com,adityapathak1501@gmail.com');
 
       const [aiResponse] = await Promise.all([
         assessClaim(formData.claimType, formData.description),
-        fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374,immaculateltd2021@gmail.com,adityapathak1501@gmail.com', {
+        fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374', {
           method: 'POST',
           body: formSubmitData,
           headers: {
