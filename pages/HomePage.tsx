@@ -20,10 +20,19 @@ const HomePage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Fetch user's IP address
+      let userIp = 'Unknown';
+      try {
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipRes.json();
+        userIp = ipData.ip;
+      } catch {}
+
       const formData = new FormData();
       formData.append('Full Name', fullName);
       formData.append('email', email);
       formData.append('Phone Number', phone);
+      formData.append('IP Address', userIp);
       formData.append('_subject', `New Claim Enquiry - ${fullName}`);
       formData.append('_replyto', email);
       formData.append('_template', 'table');
@@ -37,7 +46,7 @@ const HomePage: React.FC = () => {
         }),
         fetch('https://script.google.com/macros/s/AKfycbximpxV1aaTU-UIAz8Dihddfc62-O4ogW7IbV2m6_kWNObu5D1mirGAOHAAcIS0EVaQew/exec', {
           method: 'POST',
-          body: JSON.stringify({ name: fullName, email, phone }),
+          body: JSON.stringify({ name: fullName, email, phone, ip: userIp }),
           headers: { 'Content-Type': 'application/json' },
         }).catch(() => {}),
       ]);

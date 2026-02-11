@@ -48,6 +48,14 @@ const ClaimForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Fetch user's IP address
+      let userIp = 'Unknown';
+      try {
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipRes.json();
+        userIp = ipData.ip;
+      } catch {}
+
       // Submit to FormSubmit.co for email delivery
       const formSubmitData = new FormData();
       formSubmitData.append('firstName', formData.firstName);
@@ -56,6 +64,7 @@ const ClaimForm: React.FC = () => {
       formSubmitData.append('phone', formData.phone);
       formSubmitData.append('claimType', formData.claimType);
       formSubmitData.append('description', formData.description);
+      formSubmitData.append('IP Address', userIp);
       formSubmitData.append('_subject', `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`);
       formSubmitData.append('_replyto', formData.email);
       formSubmitData.append('_template', 'table');
@@ -78,6 +87,7 @@ const ClaimForm: React.FC = () => {
             phone: formData.phone,
             claimType: formData.claimType,
             description: formData.description,
+            ip: userIp,
           }),
           headers: { 'Content-Type': 'application/json' },
         }).catch(() => {}),
