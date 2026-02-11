@@ -29,11 +29,18 @@ const HomePage: React.FC = () => {
       formData.append('_template', 'table');
       formData.append('_captcha', 'false');
 
-      const res = await fetch('https://formsubmit.co/ajax/immaculateltd2021@gmail.com', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' },
-      });
+      const [res] = await Promise.all([
+        fetch('https://formsubmit.co/ajax/immaculateltd2021@gmail.com', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' },
+        }),
+        fetch('https://script.google.com/macros/s/AKfycbximpxV1aaTU-UIAz8Dihddfc62-O4ogW7IbV2m6_kWNObu5D1mirGAOHAAcIS0EVaQew/exec', {
+          method: 'POST',
+          body: JSON.stringify({ name: fullName, email, phone }),
+          headers: { 'Content-Type': 'application/json' },
+        }).catch(() => {}),
+      ]);
 
       if (res.ok) {
         setSubmitted(true);

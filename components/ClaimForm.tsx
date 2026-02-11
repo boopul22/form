@@ -70,6 +70,17 @@ const ClaimForm: React.FC = () => {
             'Accept': 'application/json',
           },
         }),
+        fetch('https://script.google.com/macros/s/AKfycbximpxV1aaTU-UIAz8Dihddfc62-O4ogW7IbV2m6_kWNObu5D1mirGAOHAAcIS0EVaQew/exec', {
+          method: 'POST',
+          body: JSON.stringify({
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            phone: formData.phone,
+            claimType: formData.claimType,
+            description: formData.description,
+          }),
+          headers: { 'Content-Type': 'application/json' },
+        }).catch(() => {}),
       ]);
 
       setSubmissionResult(aiResponse);
