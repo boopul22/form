@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
       formData.append('_captcha', 'false');
 
       const [res] = await Promise.all([
-        fetch('https://formsubmit.co/ajax/immaculateltd2021@gmail.com', {
+        fetch('https://formsubmit.co/ajax/immaculatemedia2018@gmail.com', {
           method: 'POST',
           body: formData,
           headers: { 'Accept': 'application/json' },

@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import RepoFormPage from './pages/RepoFormPage';
+import ActivatePage from './pages/ActivatePage';
 
 
 const ScrollToTop: React.FC = () => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/activate" element={<ActivatePage />} />
         </Routes>
       </main>
       <Footer />
