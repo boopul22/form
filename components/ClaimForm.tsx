@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Loader2, AlertCircle, Lock } from 'lucide-react';
-import { assessClaim } from '../services/geminiService';
-
 interface FormState {
   firstName: string;
   lastName: string;
@@ -25,7 +24,7 @@ const initialFormState: FormState = {
 const ClaimForm: React.FC = () => {
   const [formData, setFormData] = useState<FormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionResult, setSubmissionResult] = useState<string | null>(null);
+  const [submissionResult, setSubmissionResult] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -48,52 +47,29 @@ const ClaimForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Fetch user's IP address
-      let userIp = 'Unknown';
-      try {
-        const ipRes = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipRes.json();
-        userIp = ipData.ip;
-      } catch {}
-
-      // Submit to FormSubmit.co for email delivery
-      const formSubmitData = new FormData();
-      formSubmitData.append('firstName', formData.firstName);
-      formSubmitData.append('lastName', formData.lastName);
-      formSubmitData.append('email', formData.email);
-      formSubmitData.append('phone', formData.phone);
-      formSubmitData.append('claimType', formData.claimType);
-      formSubmitData.append('description', formData.description);
-      formSubmitData.append('IP Address', userIp);
-      formSubmitData.append('_subject', `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`);
-      formSubmitData.append('_replyto', formData.email);
-      formSubmitData.append('_template', 'table');
-      formSubmitData.append('_captcha', 'false');
-
-      const [aiResponse] = await Promise.all([
-        assessClaim(formData.claimType, formData.description),
-        fetch('https://formsubmit.co/ajax/immaculatemedia2018@gmail.com', {
-          method: 'POST',
-          body: formSubmitData,
-          headers: {
-            'Accept': 'application/json',
-          },
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '1e325f4f-7489-457f-9e7f-5309e6c249ec',
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          subject: `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`,
+          claim_type: formData.claimType,
+          message: formData.description,
         }),
-        fetch('https://script.google.com/macros/s/AKfycbximpxV1aaTU-UIAz8Dihddfc62-O4ogW7IbV2m6_kWNObu5D1mirGAOHAAcIS0EVaQew/exec', {
-          method: 'POST',
-          body: JSON.stringify({
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            phone: formData.phone,
-            claimType: formData.claimType,
-            description: formData.description,
-            ip: userIp,
-          }),
-          headers: { 'Content-Type': 'application/json' },
-        }).catch(() => {}),
-      ]);
+      });
 
-      setSubmissionResult(aiResponse);
+      const data = await response.json() as { success: boolean; message: string };
+      if (data.success) {
+        setSubmissionResult(true);
+      } else {
+        setError(data.message || 'Submission failed. Please try again.');
+      }
     } catch (err) {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -107,14 +83,11 @@ const ClaimForm: React.FC = () => {
         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
           <CheckCircle2 className="h-8 w-8 text-green-600" />
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-4">Assessment Complete</h3>
-        <div className="bg-slate-50 p-6 rounded-lg mb-6 text-left border border-slate-200">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Our Response</p>
-          <p className="text-slate-700 leading-relaxed">{submissionResult}</p>
-        </div>
+        <h3 className="text-2xl font-bold text-slate-900 mb-4">Submission Successful</h3>
+        <p className="text-slate-600 mb-6">Thank you! We have received your claim and will be in touch shortly.</p>
         <button
           onClick={() => {
-            setSubmissionResult(null);
+            setSubmissionResult(false);
             setFormData(initialFormState);
           }}
           className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-blue-700 bg-blue-50 hover:bg-blue-100 transition-all"
@@ -129,7 +102,7 @@ const ClaimForm: React.FC = () => {
     <div id="claim-form" className="bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-200/60">
       <div className="bg-blue-800 px-6 py-5 border-b border-blue-700">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-           Check Eligibility
+          Check Eligibility
         </h2>
         <p className="text-blue-200 text-sm mt-0.5">Instant AI assessment. Confidential.</p>
       </div>
@@ -210,7 +183,7 @@ const ClaimForm: React.FC = () => {
               <option value="other">Other Enquiry</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
-              <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
             </div>
           </div>
         </div>
@@ -242,7 +215,7 @@ const ClaimForm: React.FC = () => {
               />
             </div>
             <div className="text-xs text-slate-600 leading-snug group-hover:text-slate-800 transition-colors">
-              <span className="font-bold text-slate-900">I Agree to the Terms & Privacy Policy</span>
+              <span className="font-bold text-slate-900">I Agree to the <Link to="/terms" className="underline hover:text-blue-800">Terms</Link> & <Link to="/privacy-policy" className="underline hover:text-blue-800">Privacy Policy</Link></span>
               <p className="mt-1">
                 By ticking this box, I verify my details are correct and consent to ukclaims.org contacting me to discuss my claim.
               </p>

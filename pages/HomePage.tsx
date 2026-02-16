@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
 const HomePage: React.FC = () => {
@@ -9,6 +10,23 @@ const HomePage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [apiKey, setApiKey] = useState<string>(process.env.WEB3_FORM_API || '1e325f4f-7489-457f-9e7f-5309e6c249ec');
+
+  React.useEffect(() => {
+    // Fetch configuration from the worker if available
+    fetch('/api/config')
+      .then(res => res.json())
+      .then((data: { WEB3_FORM_API?: string }) => {
+        if (data && data.WEB3_FORM_API) {
+          setApiKey(data.WEB3_FORM_API);
+        }
+      })
+      .catch(() => {
+        // Fallback to build-time env var or check if we are in dev mode
+        console.log('Using default or build-time configuration');
+      });
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,41 +38,40 @@ const HomePage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Fetch user's IP address
+      // Fetch user's IP address (optional, but good for context if Web3Forms supports it or just as custom field)
       let userIp = 'Unknown';
       try {
         const ipRes = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipRes.json();
+        const ipData = await ipRes.json() as { ip: string };
         userIp = ipData.ip;
-      } catch {}
+      } catch { }
 
-      const formData = new FormData();
-      formData.append('Full Name', fullName);
-      formData.append('email', email);
-      formData.append('Phone Number', phone);
-      formData.append('IP Address', userIp);
-      formData.append('_subject', `New Claim Enquiry - ${fullName}`);
-      formData.append('_replyto', email);
-      formData.append('_template', 'table');
-      formData.append('_captcha', 'false');
-
-      const [res] = await Promise.all([
-        fetch('https://formsubmit.co/ajax/immaculatemedia2018@gmail.com', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' },
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          // Use the access key state variable (fetched from worker or fallback)
+          access_key: apiKey,
+          name: fullName,
+          email: email,
+          phone: phone,
+          subject: `New Claim Enquiry - ${fullName}`,
+          message: `New claim enquiry from ${fullName}. Phone: ${phone}. IP: ${userIp}`,
+          // Custom fields for Web3Forms to show in the email
+          'IP Address': userIp,
+          'Consent': 'User agreed to Terms & Privacy Policy and consented to contact',
         }),
-        fetch('https://script.google.com/macros/s/AKfycbximpxV1aaTU-UIAz8Dihddfc62-O4ogW7IbV2m6_kWNObu5D1mirGAOHAAcIS0EVaQew/exec', {
-          method: 'POST',
-          body: JSON.stringify({ name: fullName, email, phone, ip: userIp }),
-          headers: { 'Content-Type': 'application/json' },
-        }).catch(() => {}),
-      ]);
+      });
 
-      if (res.ok) {
+      const data = await response.json() as { success: boolean; message: string };
+
+      if (data.success) {
         setSubmitted(true);
       } else {
-        setError('Something went wrong. Please try again.');
+        setError(data.message || 'Something went wrong. Please try again.');
       }
     } catch {
       setError('Something went wrong. Please try again.');
@@ -154,7 +171,7 @@ const HomePage: React.FC = () => {
                   className="w-5 h-5 mt-0.5 text-rose-600 border-gray-300 rounded focus:ring-rose-500 cursor-pointer"
                 />
                 <span className="text-xs text-slate-600 leading-snug">
-                  <span className="font-bold text-slate-800">I agree to the Terms & Privacy Policy.</span>{' '}
+                  <span className="font-bold text-slate-800">I agree to the <Link to="/terms" className="underline hover:text-rose-600">Terms</Link> & <Link to="/privacy-policy" className="underline hover:text-rose-600">Privacy Policy</Link>.</span>{' '}
                   I confirm my details are correct and consent to ukclaims.org contacting me about my claim.
                 </span>
               </label>
