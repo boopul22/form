@@ -39,8 +39,9 @@ const Footer: React.FC = () => {
           <p className="leading-relaxed max-w-3xl mx-auto">
             You are not required to use our services to file your claim. You can contact the responsible party directly at no cost. If your claim is unsuccessful, you may refer it to the Financial Ombudsman Service or the Financial Compensation Scheme free of charge.
           </p>
-          <p>Immaculate Ltd</p>
-          <p>ICO: ZB932467</p>
+          <p className="font-semibold text-slate-400">ML Holdings</p>
+          <p>Registered in England &amp; Wales</p>
+          <p>FCA: 834008 | ICO: ZB963604</p>
           <div className="flex flex-wrap justify-center gap-3 mt-2">
             <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Cookies Policy</Link>
             <span>|</span>
@@ -50,7 +51,7 @@ const Footer: React.FC = () => {
             <span>|</span>
             <Link to="/about" className="hover:text-blue-400 transition-colors">Contact</Link>
           </div>
-          <p>&copy; 2025 PCP Claim Immac</p>
+          <p>&copy; 2025 ML Holdings. All rights reserved.</p>
         </div>
       </div>
     </footer>
